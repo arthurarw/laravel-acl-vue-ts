@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\DTOs\Users\StorePermissionData;
-use App\DTOs\Users\UpdatePermissionData;
+
+use App\DTOs\Users\StoreUserData;
+use App\DTOs\Users\UpdateUserData;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -25,7 +26,7 @@ class UserService
         })->paginate($perPage, ['*'], 'page', $page);
     }
 
-    public function store(StorePermissionData $data): User
+    public function store(StoreUserData $data): User
     {
         return $this->user->query()->create((array)$data);
     }
@@ -46,11 +47,11 @@ class UserService
 
     /**
      * @param string $id
-     * @param UpdatePermissionData $data
+     * @param UpdateUserData $data
      * @return JsonResponse
      * @throws Exception
      */
-    public function update(string $id, UpdatePermissionData $data): JsonResponse
+    public function update(string $id, UpdateUserData $data): JsonResponse
     {
         try {
             $user = $this->show($id);

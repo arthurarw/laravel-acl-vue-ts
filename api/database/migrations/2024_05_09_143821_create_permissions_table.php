@@ -17,8 +17,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('permission_user
-        ', function (Blueprint $table) {
+        Schema::create('permission_user', function (Blueprint $table) {
             $table->uuid('permission_id');
             $table->uuid('user_id');
             $table->primary(['permission_id', 'user_id']);
