@@ -30,7 +30,9 @@ class AuthService
 
     public function me()
     {
-        return Auth::user();
+        $user = Auth::user();
+        $user->load('permissions');
+        return $user;
     }
 
     public function logout()

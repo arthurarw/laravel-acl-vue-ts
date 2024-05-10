@@ -19,7 +19,7 @@ class UserService
 
     public function getAll(int $page = 1, int $perPage = 15, string $filter = ''): LengthAwarePaginator
     {
-        return $this->user->query()->where(function ($query) use ($filter) {
+        return $this->user->query()->with(['permissions'])->where(function ($query) use ($filter) {
             if (!empty($filter)) {
                 $query->where('name', 'LIKE', "%{$filter}%");
             }
@@ -75,5 +75,27 @@ class UserService
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully']);
+    }
+
+    public function syncPermissions(string $id, array $data): JsonResponse
+    {
+        $user = $this->show($id);
+        $user->permissions()->sync($data);
+
+        return response()->json(['message' => 'Permissions synchronized successfully']);
+    }
+
+    public function userPermissions(string $id)
+    {
+        return $this->show($id)->permissions()->get();
+    }
+
+    public function hasPermission(User $user, string $permission): bool
+    {
+        if ($user->is_super_admin) {
+            return true;
+        }
+
+        return $user->permissions()->where('route_name', $permission)->exists();
     }
 }

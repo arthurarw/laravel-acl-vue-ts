@@ -11,7 +11,7 @@ class Permission extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'route_name'];
 
     public function users(): BelongsToMany
     {
