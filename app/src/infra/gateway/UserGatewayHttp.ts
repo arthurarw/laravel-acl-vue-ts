@@ -1,8 +1,10 @@
+import { getBrowserName, slugify } from "../../helpers/string";
 import HttpClientAdapter from "../http/HttpClientAdapter";
 
 export default class UserGatewayHttp {
   async login(email: string, password: string): Promise<any> {
-    const deviceName = `app_vue_${navigator.userAgent}`;
+    const userAgent = slugify(getBrowserName(navigator.userAgent));
+    const deviceName = `app-vue-${userAgent}`;
     return await HttpClientAdapter.post("/login", {
       email,
       password,
