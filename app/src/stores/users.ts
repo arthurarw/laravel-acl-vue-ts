@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import UserGatewayHttp from "../infra/gateway/UserGatewayHttp";
+import { IUser } from "../interfaces/IUser";
 
 const userGateway = new UserGatewayHttp();
 
 export const useUsersStore = defineStore("users", {
   state: () => ({
-    users: [],
+    me: null as null | IUser,
+    users: [] as IUser[],
   }),
   getters: {
     hasUsers: (state) => state.users.length > 0,
