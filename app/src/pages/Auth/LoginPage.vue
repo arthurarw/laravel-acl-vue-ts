@@ -1,17 +1,17 @@
 <script lang="ts">
 import { ref } from 'vue';
-import UserGatewayHttp from '../../infra/gateway/UserGatewayHttp';
+import { useUsersStore } from '../../stores/users';
 
 export default {
   setup() {
+    const usersStore = useUsersStore();
     const loading = ref(false);
     const email = ref('');
     const password = ref('');
 
     const auth = () => {
       loading.value = true;
-      const userGateway = new UserGatewayHttp;
-      userGateway.login(email.value, password.value).then(response => {
+      usersStore.auth(email.value, password.value).then(response => {
         console.log(response);
       }).catch(error => {
         console.log(error);
