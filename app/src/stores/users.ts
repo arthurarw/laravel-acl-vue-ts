@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import UserGatewayHttp from "../infra/gateway/UserGatewayHttp";
-import { IUser } from "../interfaces/IUser";
+import UserGatewayHttp from "@/infra/gateway/UserGatewayHttp";
+import { IUser } from "@/interfaces/IUser";
 
 const userGateway = new UserGatewayHttp();
 
