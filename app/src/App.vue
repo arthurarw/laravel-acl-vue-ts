@@ -7,10 +7,10 @@ import { RouterView } from 'vue-router';
   <aside>
     <ul>
       <li>
-        <router-link to="/">Home</router-link>
+        <router-link to="/admin">Admin Home</router-link>
       </li>
       <li>
-        <router-link to="/login">Login</router-link>
+        <router-link to="/">Login</router-link>
       </li>
     </ul>
   </aside>
