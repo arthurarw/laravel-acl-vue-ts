@@ -1,14 +1,14 @@
 import axios, { AxiosInstance } from "axios";
 import HttpClient from "./HttpClient";
+import { API_URL } from "@/utils/constants";
 
 class HttpClientAdapter implements HttpClient {
   private axiosInstance: AxiosInstance | null = null;
   private static instance: HttpClientAdapter | null = null;
 
   constructor() {
-    const baseURL = "http://localhost:8990";
     this.axiosInstance = axios.create({
-      baseURL,
+      baseURL: API_URL,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
