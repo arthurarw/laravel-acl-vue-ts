@@ -1,8 +1,9 @@
 import AuthTemplate from "@/layouts/AuthTemplate.vue";
-import LoginPage from "@/pages/Auth/LoginPage.vue";
+import LoginPage from "@/pages/Auth/Login.vue";
 import ForgotPassword from "@/pages/Auth/ForgotPassword.vue";
 import DefaultTemplate from "@/layouts/DefaultTemplate.vue";
-import HomeAdminPage from "@/pages/Admin/HomeAdminPage.vue";
+import HomeAdminPage from "@/pages/Admin/home/HomeAdmin.vue";
+import ListUsers from "@/pages/Admin/users/ListUsers.vue";
 
 export const routes = [
   {
@@ -25,6 +26,11 @@ export const routes = [
     path: "/admin",
     component: DefaultTemplate,
     children: [
+      {
+        name: "users.index",
+        path: "users",
+        component: ListUsers,
+      },
       {
         name: "admin.home",
         path: "",
