@@ -22,6 +22,11 @@ export default class UserGatewayHttp {
       .get("/me")
       .then((response) => {
         return response.data.data;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.removeItem(TOKEN_NAME);
+        }
       });
 
     return response;
