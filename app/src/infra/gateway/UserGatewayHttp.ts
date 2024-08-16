@@ -1,10 +1,11 @@
 import Permission from "@/entities/Permission";
 import User from "@/entities/User";
-import { getBrowserName, slugify } from "@/utils/string";
 import HttpClientAdapter from "@/infra/http/HttpClientAdapter";
+import { Pagination } from "@/interfaces/Pagination";
+import { StoreUser } from "@/interfaces/User";
 import router from "@/router";
 import { TOKEN_NAME } from "@/utils/constants";
-import { Pagination } from "@/interfaces/Pagination";
+import { getBrowserName, slugify } from "@/utils/string";
 
 export default class UserGatewayHttp {
   async login(email: string, password: string): Promise<Response> {
@@ -72,5 +73,18 @@ export default class UserGatewayHttp {
     });
 
     return { users, meta: response.meta };
+  }
+
+  async store(params: StoreUser): Promise<User> {
+    const response = await HttpClientAdapter.withAuthorization()
+      .post("/users", params)
+      .then((response) => response.data);
+
+    return new User(
+      response.id,
+      response.name,
+      response.email,
+      response.is_super_admin,
+    );
   }
 }

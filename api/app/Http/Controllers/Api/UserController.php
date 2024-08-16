@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DTOs\Users\StorePermissionData;
-use App\DTOs\Users\UpdatePermissionData;
+use App\DTOs\Users\StoreUserData;
+use App\DTOs\Users\UpdateUserData;
 use App\Helpers\Pagination;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
@@ -41,7 +41,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-        $users = StorePermissionData::fromRequest($data);
+        $users = StoreUserData::fromRequest($data);
         return new UserResource($this->userService->store($users));
     }
 
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, string $user)
     {
         $data = $request->validated();
-        return $this->userService->update($user, UpdatePermissionData::fromRequest($data));
+        return $this->userService->update($user, UpdateUserData::fromRequest($data));
     }
 
     /**

@@ -1,7 +1,8 @@
-import { defineStore } from "pinia";
-import UserGatewayHttp from "@/infra/gateway/UserGatewayHttp";
 import User from "@/entities/User";
+import UserGatewayHttp from "@/infra/gateway/UserGatewayHttp";
 import { Pagination } from "@/interfaces/Pagination";
+import { StoreUser } from "@/interfaces/User";
+import { defineStore } from "pinia";
 
 const userGateway = new UserGatewayHttp();
 
@@ -23,11 +24,18 @@ export const useUsersStore = defineStore("users", {
         this.me = user;
       });
     },
-    async getPaginate(page: number = 1, perPage: number = 15): Promise<void> {
-      await userGateway.getPaginate(page, perPage).then((response) => {
+    async getPaginate(
+      page: number = 1,
+      perPage: number = 15,
+      filter: string = "",
+    ): Promise<void> {
+      await userGateway.getPaginate(page, perPage, filter).then((response) => {
         this.users = response.users;
         this.meta = response.meta;
       });
+    },
+    async store(params: StoreUser): Promise<void> {
+      await userGateway.store(params);
     },
   },
 });

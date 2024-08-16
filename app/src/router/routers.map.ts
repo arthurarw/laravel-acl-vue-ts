@@ -4,6 +4,7 @@ import ForgotPassword from "@/pages/Auth/ForgotPassword.vue";
 import DefaultTemplate from "@/layouts/DefaultTemplate.vue";
 import HomeAdminPage from "@/pages/Admin/home/HomeAdmin.vue";
 import ListUsers from "@/pages/Admin/users/ListUsers.vue";
+import CreateUser from "@/pages/Admin/users/CreateUser.vue";
 
 export const routes = [
   {
@@ -26,6 +27,11 @@ export const routes = [
     path: "/admin",
     component: DefaultTemplate,
     children: [
+      {
+        name: "users.create",
+        path: "users",
+        component: CreateUser,
+      },
       {
         name: "users.index",
         path: "users",
