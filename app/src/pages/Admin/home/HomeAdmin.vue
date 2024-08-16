@@ -4,8 +4,8 @@ import { onMounted } from 'vue';
 
 const useUserStore = useUsersStore();
 
-onMounted(() => {
-  useUserStore.getMe();
+onMounted(async () => {
+  await useUserStore.getMe();
 });
 
 </script>

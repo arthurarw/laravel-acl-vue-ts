@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import UserGatewayHttp from "@/infra/gateway/UserGatewayHttp";
 import User from "@/entities/User";
+import { Pagination } from "@/interfaces/Pagination";
 
 const userGateway = new UserGatewayHttp();
 
@@ -8,6 +9,7 @@ export const useUsersStore = defineStore("users", {
   state: () => ({
     me: null as null | User,
     users: [] as User[],
+    meta: undefined as undefined | Pagination,
   }),
   getters: {
     hasUsers: (state): boolean => state.users.length > 0,
@@ -19,6 +21,12 @@ export const useUsersStore = defineStore("users", {
     async getMe(): Promise<void> {
       await userGateway.getMe().then((user) => {
         this.me = user;
+      });
+    },
+    async getPaginate(page: number = 1, perPage: number = 15): Promise<void> {
+      await userGateway.getPaginate(page, perPage).then((response) => {
+        this.users = response.users;
+        this.meta = response.meta;
       });
     },
   },

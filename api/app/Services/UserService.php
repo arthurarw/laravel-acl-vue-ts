@@ -17,7 +17,7 @@ class UserService
     {
     }
 
-    public function getAll(int $page = 1, int $perPage = 15, string $filter = ''): LengthAwarePaginator
+    public function getAll(int $page = 1, int $perPage = 15, string $filter = null): LengthAwarePaginator
     {
         return $this->user->query()->with(['permissions'])->where(function ($query) use ($filter) {
             if (!empty($filter)) {

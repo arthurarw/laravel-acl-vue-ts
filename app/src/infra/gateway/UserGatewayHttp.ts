@@ -4,6 +4,7 @@ import { getBrowserName, slugify } from "@/utils/string";
 import HttpClientAdapter from "@/infra/http/HttpClientAdapter";
 import router from "@/router";
 import { TOKEN_NAME } from "@/utils/constants";
+import { Pagination } from "@/interfaces/Pagination";
 
 export default class UserGatewayHttp {
   async login(email: string, password: string): Promise<Response> {
@@ -53,5 +54,23 @@ export default class UserGatewayHttp {
     user.syncPermissions(permissionsList);
 
     return user;
+  }
+
+  async getPaginate(
+    page: number = 1,
+    perPage: number = 15,
+    filter: string = "",
+  ): Promise<{ users: User[]; meta: Pagination }> {
+    const response = await HttpClientAdapter.withAuthorization()
+      .get(`/users?page=${page}&per_page=${perPage}&filter=${filter}`)
+      .then((response) => {
+        return response.data;
+      });
+
+    const users: User[] = response.data.map((user: any) => {
+      return new User(user.id, user.name, user.email, user.is_super_admin);
+    });
+
+    return { users, meta: response.meta };
   }
 }
