@@ -1,6 +1,6 @@
 import Permission from "@/entities/Permission";
 import User from "@/entities/User";
-import { getBrowserName, slugify } from "@/helpers/string";
+import { getBrowserName, slugify } from "@/utils/string";
 import HttpClientAdapter from "@/infra/http/HttpClientAdapter";
 import router from "@/router";
 import { TOKEN_NAME } from "@/utils/constants";
@@ -37,7 +37,7 @@ export default class UserGatewayHttp {
         }
       });
 
-    const { id, name, email, permissions } = response;
+    const { id, name, email, permissions, is_super_admin } = response;
 
     const permissionsList: Permission[] = permissions.map(
       (permission: Permission) => {
@@ -49,7 +49,7 @@ export default class UserGatewayHttp {
       },
     );
 
-    const user = new User(id, name, email);
+    const user = new User(id, name, email, is_super_admin);
     user.syncPermissions(permissionsList);
 
     return user;

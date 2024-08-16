@@ -18,6 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'is_super_admin' => $this->is_super_admin,
             'permissions' => PermissionResource::collection($this->whenLoaded('permissions'))
         ];
     }
