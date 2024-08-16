@@ -37,5 +37,11 @@ export const useUsersStore = defineStore("users", {
     async store(params: StoreUser): Promise<void> {
       await userGateway.store(params);
     },
+    async getById(id: string): Promise<User> {
+      return await userGateway.getById(id);
+    },
+    async destroy(id: string): Promise<void> {
+      await userGateway.destroy(id);
+    }
   },
 });

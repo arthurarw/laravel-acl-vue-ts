@@ -5,6 +5,7 @@ import DefaultTemplate from "@/layouts/DefaultTemplate.vue";
 import HomeAdminPage from "@/pages/Admin/home/HomeAdmin.vue";
 import ListUsers from "@/pages/Admin/users/ListUsers.vue";
 import CreateUser from "@/pages/Admin/users/CreateUser.vue";
+import DetailUser from "@/pages/Admin/users/DetailUser.vue";
 
 export const routes = [
   {
@@ -28,8 +29,14 @@ export const routes = [
     component: DefaultTemplate,
     children: [
       {
+        name: "users.show",
+        path: "users/:id",
+        component: DetailUser,
+        props: true,
+      },
+      {
         name: "users.create",
-        path: "users",
+        path: "users/create",
         component: CreateUser,
       },
       {

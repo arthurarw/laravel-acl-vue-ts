@@ -87,4 +87,24 @@ export default class UserGatewayHttp {
       response.is_super_admin,
     );
   }
+
+  async getById(userId: string): Promise<User> {
+    const response = await HttpClientAdapter.withAuthorization()
+      .get(`/users/${userId}`)
+      .then((response) => {
+        return response.data;
+      });
+
+    const { id, name, email, is_super_admin } = response.data;
+
+    return new User(id, name, email, is_super_admin);
+  }
+
+  async destroy(userId: string): Promise<void> {
+    await HttpClientAdapter.withAuthorization()
+      .delete(`/users/${userId}`)
+      .then((response) => {
+        return response.data;
+      });
+  }
 }
