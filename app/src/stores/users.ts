@@ -1,7 +1,7 @@
 import User from "@/entities/User";
 import UserGatewayHttp from "@/infra/gateway/UserGatewayHttp";
 import { Pagination } from "@/interfaces/Pagination";
-import { StoreUser } from "@/interfaces/User";
+import { StoreUser, UpdateUser } from "@/interfaces/User";
 import { defineStore } from "pinia";
 
 const userGateway = new UserGatewayHttp();
@@ -42,6 +42,9 @@ export const useUsersStore = defineStore("users", {
     },
     async destroy(id: string): Promise<void> {
       await userGateway.destroy(id);
-    }
+    },
+    async update(params: UpdateUser): Promise<void> {
+      await userGateway.update(params);
+    },
   },
 });

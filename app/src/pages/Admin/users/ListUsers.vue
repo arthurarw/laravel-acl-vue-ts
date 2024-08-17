@@ -52,7 +52,10 @@ const loadUsers = async (page: number = 1) => {
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td><router-link :to="{ name: 'users.show', params: { id: user.id } }">Detalhes</router-link></td>
+        <td>
+          <router-link :to="{ name: 'users.show', params: { id: user.id } }">Detalhes</router-link> /
+          <router-link :to="{ name: 'users.edit', params: { id: user.id } }">Editar</router-link>
+        </td>
       </tr>
     </tbody>
   </table>

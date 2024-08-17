@@ -2,7 +2,7 @@ import Permission from "@/entities/Permission";
 import User from "@/entities/User";
 import HttpClientAdapter from "@/infra/http/HttpClientAdapter";
 import { Pagination } from "@/interfaces/Pagination";
-import { StoreUser } from "@/interfaces/User";
+import { StoreUser, UpdateUser } from "@/interfaces/User";
 import router from "@/router";
 import { TOKEN_NAME } from "@/utils/constants";
 import { getBrowserName, slugify } from "@/utils/string";
@@ -103,6 +103,14 @@ export default class UserGatewayHttp {
   async destroy(userId: string): Promise<void> {
     await HttpClientAdapter.withAuthorization()
       .delete(`/users/${userId}`)
+      .then((response) => {
+        return response.data;
+      });
+  }
+
+  async update(params: UpdateUser): Promise<Response> {
+    return await HttpClientAdapter.withAuthorization()
+      .put(`/users/${params.id}`, params)
       .then((response) => {
         return response.data;
       });

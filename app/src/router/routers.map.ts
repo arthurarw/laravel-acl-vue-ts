@@ -6,6 +6,7 @@ import HomeAdminPage from "@/pages/Admin/home/HomeAdmin.vue";
 import ListUsers from "@/pages/Admin/users/ListUsers.vue";
 import CreateUser from "@/pages/Admin/users/CreateUser.vue";
 import DetailUser from "@/pages/Admin/users/DetailUser.vue";
+import EditUser from "@/pages/Admin/users/EditUser.vue";
 
 export const routes = [
   {
@@ -28,6 +29,12 @@ export const routes = [
     path: "/admin",
     component: DefaultTemplate,
     children: [
+      {
+        name: "users.edit",
+        path: "users/:id/edit",
+        component: EditUser,
+        props: true,
+      },
       {
         name: "users.show",
         path: "users/:id",
