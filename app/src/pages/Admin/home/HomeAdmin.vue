@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { useUsersStore } from '@/stores/users';
 import { onMounted } from 'vue';
-
-const useUserStore = useUsersStore();
-
+const useStore = useUsersStore()
 onMounted(async () => {
-  await useUserStore.getMe();
-});
-
+  await useStore.getMe()
+})
 </script>
 
 <template>
-  <p>Olá, {{ useUserStore.me?.name }}</p>
-  <div>HomePage</div>
+  <p>Olá {{ useStore.me?.name }}</p>
+  <div>Home Admin</div>
 </template>

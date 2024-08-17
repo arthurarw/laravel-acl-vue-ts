@@ -1,15 +1,19 @@
 <script lang="ts">
+import NavBar from './partials/NavBar.vue'
+
 export default {
   name: 'DefaultTemplate',
-};
+  components: {
+    NavBar
+  }
+}
 </script>
 
 <template>
-  <div>
-    <router-link :to="{ name: 'admin.home' }">Home</router-link>
-    <router-link :to="{ name: 'users.index' }" v-can="'users.index'">Usuários</router-link>
-  </div>
-  <div>
-    <router-view></router-view>
+  <NavBar />
+  <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
+    <div class="bg-white rounded p-6 m-4 w-full">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
