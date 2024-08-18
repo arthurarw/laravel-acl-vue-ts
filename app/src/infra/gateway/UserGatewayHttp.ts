@@ -120,7 +120,8 @@ export default class UserGatewayHttp {
     return await HttpClientAdapter.withAuthorization()
       .post("/logout", {})
       .then((response) => {
-        return response.data;
+        localStorage.removeItem(TOKEN_NAME);
+        return Promise.resolve(response);
       });
   }
 }
