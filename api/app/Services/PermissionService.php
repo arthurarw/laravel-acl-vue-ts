@@ -22,7 +22,9 @@ class PermissionService
             if (!empty($filter)) {
                 $query->where('name', 'LIKE', "%{$filter}%");
             }
-        })->paginate($perPage, ['*'], 'page', $page);
+        })
+            ->orderBy('route_name')
+            ->paginate($perPage, ['*'], 'page', $page);
     }
 
     public function store(StorePermissionData $data): Permission
