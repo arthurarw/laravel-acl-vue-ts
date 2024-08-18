@@ -54,16 +54,16 @@ export default {
       </li>
       <li aria-current="page">
         <div class="flex items-center">
-          <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
           </svg>
-          <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Usuários</span>
+          <span class="text-sm font-medium text-gray-500 ms-1 md:ms-2 dark:text-gray-400">Usuários</span>
         </div>
       </li>
     </ol>
   </nav>
 
-  <h2 class="text-4xl font-extrabold mt-4">Detalhes do Usuário</h2>
+  <h2 class="mt-4 text-4xl font-extrabold">Detalhes do Usuário</h2>
 
   <div v-if="loading">Carregando...</div>
   <ul class="mt-4">

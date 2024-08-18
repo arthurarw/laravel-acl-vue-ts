@@ -5,7 +5,6 @@ export default {
 </script>
 
 <template>
-  <div>Menu do Auth Template</div>
   <div>
     <router-view></router-view>
   </div>

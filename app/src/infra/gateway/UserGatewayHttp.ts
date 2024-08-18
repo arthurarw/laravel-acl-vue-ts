@@ -115,4 +115,12 @@ export default class UserGatewayHttp {
         return response.data;
       });
   }
+
+  async logout(): Promise<Response> {
+    return await HttpClientAdapter.withAuthorization()
+      .post("/logout", {})
+      .then((response) => {
+        return response.data;
+      });
+  }
 }

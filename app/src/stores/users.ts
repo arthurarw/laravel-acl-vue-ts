@@ -46,5 +46,8 @@ export const useUsersStore = defineStore("users", {
     async update(params: UpdateUser): Promise<void> {
       await userGateway.update(params);
     },
+    async logout(): Promise<void> {
+      await userGateway.logout();
+    }
   },
 });

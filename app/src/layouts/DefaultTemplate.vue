@@ -11,8 +11,8 @@ export default {
 
 <template>
   <NavBar />
-  <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-    <div class="bg-white rounded p-6 m-4 w-full">
+  <div class="flex items-center justify-center w-full font-sans h-max bg-teal-lightest">
+    <div class="w-full p-6 m-4 rounded">
       <router-view></router-view>
     </div>
   </div>
