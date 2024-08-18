@@ -1,6 +1,6 @@
 export type StorePermission = {
   name: string;
-  route_name: string;
+  route_name?: string;
   description?: string;
 };
 
