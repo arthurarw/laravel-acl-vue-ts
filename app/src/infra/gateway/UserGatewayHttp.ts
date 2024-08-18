@@ -68,8 +68,27 @@ export default class UserGatewayHttp {
         return response.data;
       });
 
-    const users: User[] = response.data.map((user: any) => {
-      return new User(user.id, user.name, user.email, user.is_super_admin);
+    const users: User[] = response.data.map((userData: any) => {
+      const user = new User(
+        userData.id,
+        userData.name,
+        userData.email,
+        userData.is_super_admin,
+      );
+
+      const permissionsUser = userData.permissions.map(
+        (permission: Permission) => {
+          return new Permission(
+            permission.id,
+            permission.name,
+            permission.description,
+          );
+        },
+      );
+
+      user.syncPermissions(permissionsUser);
+
+      return user;
     });
 
     return { users, meta: response.meta };

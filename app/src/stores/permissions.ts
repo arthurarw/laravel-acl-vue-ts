@@ -44,7 +44,6 @@ export const usePermissionsStore = defineStore("permissions", {
             )),
         );
     },
-
     async update(id: string, params: UpdatePermission): Promise<Response> {
       return await permissionGateway.update(id, params);
     },
