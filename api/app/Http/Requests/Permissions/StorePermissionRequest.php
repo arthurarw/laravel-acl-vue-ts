@@ -23,6 +23,7 @@ class StorePermissionRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255', 'unique:permissions,name'],
+            'route_name' => ['required', 'string', 'max:255', 'unique:permissions,route_name'],
             'description' => ['nullable', 'string', 'max:255'],
         ];
     }
