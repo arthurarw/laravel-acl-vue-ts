@@ -16,7 +16,7 @@ class PermissionService
     {
     }
 
-    public function getAll(int $page = 1, int $perPage = 15, string $filter = ''): LengthAwarePaginator
+    public function getAll(int $page = 1, int $perPage = 15, ?string $filter = ''): LengthAwarePaginator
     {
         return $this->permission->query()->where(function ($query) use ($filter) {
             if (!empty($filter)) {
@@ -56,15 +56,12 @@ class PermissionService
             $permission = $this->show($id);
             $data = (array)$data;
 
-            if (empty($data['name'])) {
-                unset($data['name']);
-            }
+            $updateData = [
+                'route_name' => $data['name'] ?? $permission->route_name,
+                'name' => $data['description'] ?? $permission->name,
+            ];
 
-            if (empty($data['description'])) {
-                unset($data['description']);
-            }
-
-            $permission->update($data);
+            $permission->update($updateData);
             return response()->json(['message' => 'Permission updated successfully']);
         } catch (Exception $e) {
             throw new Exception($e->getMessage() ?? 'Error updating permission', $e->getCode() ?? 500);

@@ -7,6 +7,10 @@ import ListUsers from "@/pages/Admin/users/ListUsers.vue";
 import CreateUser from "@/pages/Admin/users/CreateUser.vue";
 import DetailUser from "@/pages/Admin/users/DetailUser.vue";
 import EditUser from "@/pages/Admin/users/EditUser.vue";
+import CreatePermission from "@/pages/Admin/permissions/CreatePermission.vue";
+import DetailPermission from "@/pages/Admin/permissions/DetailPermission.vue";
+import EditPermission from "@/pages/Admin/permissions/EditPermission.vue";
+import ListPermissions from "@/pages/Admin/permissions/ListPermissions.vue";
 
 export const routes = [
   {
@@ -29,6 +33,28 @@ export const routes = [
     path: "/admin",
     component: DefaultTemplate,
     children: [
+      {
+        path: "permissions/:id/edit",
+        component: EditPermission,
+        name: "permissions.edit",
+        props: true,
+      },
+      {
+        path: "permissions/:id",
+        component: DetailPermission,
+        name: "permissions.show",
+        props: true,
+      },
+      {
+        path: "permissions/create",
+        component: CreatePermission,
+        name: "permissions.create",
+      },
+      {
+        path: "permissions",
+        component: ListPermissions,
+        name: "permissions.index",
+      },
       {
         name: "users.edit",
         path: "users/:id/edit",

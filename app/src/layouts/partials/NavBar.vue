@@ -26,9 +26,9 @@ export default {
     <router-link :to="{ name: 'users.index' }" v-can="'users.index'" class="px-3 py-2 text-white transition duration-150 ease-in-out rounded hover:text-white" active-class="text-white">
       Usuários
     </router-link>
-    <!--<router-link :to="{ name: 'permissions.index' }" v-can="'permissions.index'" class="px-3 py-2 text-white transition duration-150 ease-in-out rounded hover:text-white" active-class="text-white">
+    <router-link :to="{ name: 'permissions.index' }" v-can="'permissions.index'" class="px-3 py-2 text-white transition duration-150 ease-in-out rounded hover:text-white" active-class="text-white">
       Permissões
-    </router-link>-->
+    </router-link>
     <a href="#" @click.prevent="logout" class="px-3 py-2 text-white transition duration-150 ease-in-out rounded hover:text-white">
       Olá, {{ useStore.me?.name }}!
       (<span v-if="loadingLogout">Saindo</span><span v-else>Sair</span>)

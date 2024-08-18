@@ -1,9 +1,9 @@
 export type StorePermission = {
   name: string;
-  routeName: string;
+  route_name: string;
   description?: string;
 };
 
 export type UpdatePermission = {
-  id: string;
+  id?: string;
 } & StorePermission;

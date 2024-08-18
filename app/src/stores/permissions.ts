@@ -6,7 +6,7 @@ import { defineStore } from "pinia";
 
 const permissionGateway = new PermissionGatewayHttp();
 
-export const usePermissionStore = defineStore("permissions", {
+export const usePermissionsStore = defineStore("permissions", {
   state: () => ({
     me: null as null | Permission,
     permissions: [] as Permission[],
@@ -29,8 +29,7 @@ export const usePermissionStore = defineStore("permissions", {
         });
     },
     async create(params: StorePermission): Promise<void> {
-      const permission = await permissionGateway.store(params);
-      this.permissions.push(permission);
+      await permissionGateway.store(params);
     },
     async getById(id: string): Promise<Permission> {
       return await permissionGateway.getById(id);
@@ -46,8 +45,8 @@ export const usePermissionStore = defineStore("permissions", {
         );
     },
 
-    async update(params: UpdatePermission): Promise<Response> {
-      return await permissionGateway.update(params);
+    async update(id: string, params: UpdatePermission): Promise<Response> {
+      return await permissionGateway.update(id, params);
     },
   },
 });

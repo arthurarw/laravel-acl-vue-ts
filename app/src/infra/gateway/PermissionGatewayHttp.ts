@@ -57,9 +57,9 @@ export default class PermissionGatewayHttp {
       .catch(() => false);
   }
 
-  async update(params: UpdatePermission): Promise<Response> {
+  async update(id: string, params: UpdatePermission): Promise<Response> {
     return await HttpClientAdapter.withAuthorization()
-      .put(`/permissions/${params.id}`, params)
+      .put(`/permissions/${id}`, params)
       .then((response) => {
         return response.data;
       });
