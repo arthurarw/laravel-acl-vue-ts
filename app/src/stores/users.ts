@@ -1,3 +1,4 @@
+import Permission from "@/entities/Permission";
 import User from "@/entities/User";
 import UserGatewayHttp from "@/infra/gateway/UserGatewayHttp";
 import { Pagination } from "@/interfaces/Pagination";
@@ -11,6 +12,7 @@ export const useUsersStore = defineStore("users", {
     me: null as null | User,
     users: [] as User[],
     meta: undefined as undefined | Pagination,
+    userView: null as null | User,
   }),
   getters: {
     hasUsers: (state): boolean => state.users.length > 0,
@@ -54,5 +56,21 @@ export const useUsersStore = defineStore("users", {
       this.users = [];
       this.meta = undefined;
     },
+    addUserInView(user: User): void {
+      this.userView = user;
+    },
+    addPermissionOfUser(permissions: Permission): void {
+      this.userView?.addPermission(permissions);
+    },
+    removePermissionOfUser(permissions: Permission): void {
+      const updatePermissions = this.userView?.permissions.filter(
+        (permission) => permission.id !== permissions.id,
+      );
+      this.userView?.syncPermissions(updatePermissions!);
+    },
+
+    /*async syncPermissions(): Promise<Response> {
+      return await userGateway.syncPermissions(this.userView!);
+    },*/
   },
 });

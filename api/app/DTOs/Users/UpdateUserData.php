@@ -4,7 +4,7 @@ namespace App\DTOs\Users;
 
 readonly class UpdateUserData
 {
-    public function __construct(public string $name, public ?string $password = null)
+    public function __construct(public string $name, public string $email, public ?string $password = null)
     {
     }
 
@@ -12,6 +12,7 @@ readonly class UpdateUserData
     {
         return new self(
             name: $data['name'],
+            email: $data['email'],
             password: $data['password'] ?? null
         );
     }

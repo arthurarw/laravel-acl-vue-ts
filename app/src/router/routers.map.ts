@@ -11,6 +11,7 @@ import CreatePermission from "@/pages/Admin/permissions/CreatePermission.vue";
 import DetailPermission from "@/pages/Admin/permissions/DetailPermission.vue";
 import EditPermission from "@/pages/Admin/permissions/EditPermission.vue";
 import ListPermissions from "@/pages/Admin/permissions/ListPermissions.vue";
+import PermissionsUser from "@/pages/Admin/users/PermissionsUser.vue";
 
 export const routes = [
   {
@@ -76,6 +77,11 @@ export const routes = [
         name: "users.index",
         path: "users",
         component: ListUsers,
+      },
+      {
+        name: "users.permissions",
+        path: "users/permissions",
+        component: PermissionsUser,
       },
       {
         name: "admin.home",

@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\DTOs\Users\StoreUserData;
 use App\DTOs\Users\UpdateUserData;
+use App\Helpers\Utils;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -56,10 +57,7 @@ class UserService
         try {
             $user = $this->show($id);
 
-            $data = (array)$data;
-            if (empty($data['password'])) {
-                unset($data['password']);
-            }
+            $data = Utils::removeEmptyKeys((array)$data);
 
             $user->update($data);
 

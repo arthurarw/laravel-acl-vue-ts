@@ -24,6 +24,10 @@ class PermissionMiddleware
         $routeName = Route::currentRouteName();
         $user = $request->user();
 
+        if ($routeName === 'auth.me') {
+            return $next($request);
+        }
+
         if (!$this->userService->hasPermission($user, $routeName)) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }
