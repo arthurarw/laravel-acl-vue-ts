@@ -143,4 +143,11 @@ export default class UserGatewayHttp {
         return Promise.resolve(response);
       });
   }
+
+  async syncPermissions(user: User): Promise<Response> {
+    const permissionsIds = user.permissions.map((permission) => permission.id);
+    return await HttpClientAdapter.post(`/users/${user.id}/permissions/sync`, {
+      permissions: permissionsIds,
+    });
+  }
 }

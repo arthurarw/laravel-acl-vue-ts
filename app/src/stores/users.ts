@@ -66,11 +66,14 @@ export const useUsersStore = defineStore("users", {
       const updatePermissions = this.userView?.permissions.filter(
         (permission) => permission.id !== permissions.id,
       );
-      this.userView?.syncPermissions(updatePermissions!);
+
+      if (updatePermissions) {
+        this.userView?.syncPermissions(updatePermissions);
+      }
     },
 
-    /*async syncPermissions(): Promise<Response> {
+    async syncPermissions(): Promise<Response> {
       return await userGateway.syncPermissions(this.userView!);
-    },*/
+    },
   },
 });

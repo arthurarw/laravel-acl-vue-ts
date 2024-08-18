@@ -26,30 +26,31 @@ const loadPermissions = async (page: number = 1) => {
 }
 
 const hasPermission = (permissionName: string): boolean => {
-  let hasPermission = false
+  let hasPermission = false;
   userStore.userView?.permissions.forEach((permission: any) => {
     if (permission.name === permissionName) {
-      hasPermission = true
+      hasPermission = true;
     }
   })
 
-  return hasPermission
+  return hasPermission;
 }
 
 const handleCheckboxChange = (permission: Permission, event: Event) => {
-  const target = event.target as HTMLInputElement
+  const target = event.target as HTMLInputElement;
   if (target.checked) {
-    userStore.addPermissionOfUser(permission)
-    return
+    userStore.addPermissionOfUser(permission);
+    return;
   }
-  userStore.removePermissionOfUser(permission)
+  userStore.removePermissionOfUser(permission);
 }
 
-/*const syncPermissions = () => {
+const syncPermissions = () => {
   loading.value = true
-  /*userStore.syncPermissions().then(() => {
+  userStore.syncPermissions().then(() => {
     router.push({ name: 'users.index' })
-  }).finally(() => loading.value = false)*/
+  }).finally(() => loading.value = false)
+}
 
 </script>
 
@@ -95,14 +96,14 @@ const handleCheckboxChange = (permission: Permission, event: Event) => {
       </tbody>
     </table>
 
-    <!--<div>
+    <div>
       <form action="#" method="post" @submit.prevent="syncPermissions">
         <button type="submit" :disabled="loading" class="w-full px-4 py-2 mt-4 font-bold text-white border-b-4 rounded bg-slate-500 hover:bg-slate-400 border-slate-700 hover:border-slate-500">
           <span v-if="loading">Enviando...</span>
           <span v-else>Sincronizar Permissões</span>
         </button>
       </form>
-    </div>-->
+    </div>
   </div>
 
   <pagination-component :data="permissionStore.meta" @loadPage="loadPermissions"></pagination-component>
